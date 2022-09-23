@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function App() {
 
 
-  const [red,setRed] = useState(0.3);
+  /* const [red,setRed] = useState(0.3);
   const [yellow,setYellow] = useState(0.3);
   const [green,setGreen] = useState(0.3);
 
@@ -18,26 +18,49 @@ export default function App() {
     setYellow(0.3)
   }
 
-  const Open = () =>{
+  const Open = (e) =>{
+    e.target.style.opacity=1;
     setRed(0.3)
-    setGreen(1)
     setYellow(0.3)
   }
 
-  const Attention = () =>{
+  const Attention = (e) =>{
+    e.target.style.opacity=1;
     setRed (0.3)
     setGreen  (0.3)
-    setYellow  (1)
-  }
+   
+  } */
 
- 
+ const[color,setColor] = useState({
+  c1: 0.3,
+  c2: 0.3,
+  c3: 0.3
+ });
+
+const initial = {
+  c1: 0.3,
+  c2: 0.3,
+  c3: 0.3}
+
+function changeColor(cor){
+    setColor((initialState = initial) => {
+        console.log({...initial})
+      if(cor === 'c1')
+      return {c1: 1 , c2:0.3, c3:0.3}
+      else if(cor === 'c2')
+      return {c1: 0.3 , c2:1, c3:0.3}
+      else if(cor === 'c3')
+      return {c1: 0.3 , c2:0.3, c3:1}
+    });
+}
+
 
   return (
     <View style={styles.container}>
      <View style={styles.semaforo}>
-      <TouchableOpacity onPress={Closed}><View  style={[styles.circulo,{backgroundColor:"red", opacity:red}]}></View></TouchableOpacity>
-      <TouchableOpacity onPress={Attention}><View  style={[styles.circulo,{backgroundColor:"yellow" , opacity:yellow}]}></View></TouchableOpacity>
-      <TouchableOpacity onPress={Open}><View style={[styles.circulo,{backgroundColor:"green" , opacity:green}]}></View></TouchableOpacity>
+      <TouchableOpacity onPress={() => changeColor('c1')}><View  style={[styles.circulo,{backgroundColor:"red", opacity:color.c1}]}></View></TouchableOpacity>
+      <TouchableOpacity onPress={() => changeColor('c2')}><View  style={[styles.circulo,{backgroundColor:"yellow" , opacity:color.c2}]}></View></TouchableOpacity>
+      <TouchableOpacity onPress={() => changeColor('c3')}><View style={[styles.circulo,{backgroundColor:"green" , opacity:color  .c3}]}></View></TouchableOpacity>
      </View>
       <StatusBar style="auto" />
     </View>
