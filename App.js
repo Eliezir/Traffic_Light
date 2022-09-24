@@ -1,58 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Touchable } from 'react-native';
 import { useState } from 'react';
-
-export default function App() {
-
-
-  /* const [red,setRed] = useState(0.3);
-  const [yellow,setYellow] = useState(0.3);
-  const [green,setGreen] = useState(0.3);
-
-  const sets = [setRed,setGreen,setYellow]
-
-
-  const Closed = () =>{
-    setRed(1)
-    setGreen(0.3)
-    setYellow(0.3)
-  }
-
-  const Open = (e) =>{
-    e.target.style.opacity=1;
-    setRed(0.3)
-    setYellow(0.3)
-  }
-
-  const Attention = (e) =>{
-    e.target.style.opacity=1;
-    setRed (0.3)
-    setGreen  (0.3)
-   
-  } */
-
- const[color,setColor] = useState({
-  c1: 0.3,
-  c2: 0.3,
-  c3: 0.3
- });
+/* var wasActive = 'c1'; */
 
 const initial = {
   c1: 0.3,
   c2: 0.3,
   c3: 0.3}
 
-function changeColor(cor){
-    setColor((initialState = initial) => {
-        console.log({...initial})
-      if(cor === 'c1')
-      return {c1: 1 , c2:0.3, c3:0.3}
-      else if(cor === 'c2')
-      return {c1: 0.3 , c2:1, c3:0.3}
-      else if(cor === 'c3')
-      return {c1: 0.3 , c2:0.3, c3:1}
+export default function App() {
+
+ const[color,setColor] = useState({
+  ...initial
+ });
+
+ // armazenando o initial state em uma variavel
+ function changeColor(cor){
+      setColor(() => { 
+      return{...initial, [cor]:1}
     });
-}
+    console.log(color)
+} 
+
+
+// armazenando a cor que estava ativa em uma variavel
+/* function changeColor(cor){
+  setColor((previusState) => {
+  return{...previusState, [wasActive]:0.3, [cor]:1}
+});
+wasActive = cor;
+console.log(color)
+}  */
+
+
 
 
   return (
